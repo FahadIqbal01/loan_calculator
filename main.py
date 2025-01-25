@@ -37,13 +37,16 @@ while True:
     def calculate_monthly_payment(P, r, n):             # P = Loan Amount, r = Monthly Rate, n = Total Numbers of Payments
         # Calculate monthly payment
         if r == 0:
-            return P / n
+            M = P / n
         else:
-            return (P * r * (1 + r)**n) / ((1 + r)**n - 1)
-
+            M = (P * r * (1 + r)**n) / ((1 + r)**n - 1)
+        
+        total_repayment = round(M * n, 2)               # Total repayment over the load term
+        return M, total_repayment
     # Compute and display the monthly payment
-    monthly_payment = calculate_monthly_payment(P= loan_amount, r= monthly_rate, n= number_of_payments)
+    monthly_payment, total_repayment = calculate_monthly_payment(P= loan_amount, r= monthly_rate, n= number_of_payments)
     print(f"Your monthly payment is ${round(monthly_payment, 2)}")
+    print(f"Total repayment over {int(loan_terms_years)} years: ${total_repayment}")
     
     while True:
         query_for_another_calculation = input("Do you want to calculate another loan? (yes/no): ").lower()
